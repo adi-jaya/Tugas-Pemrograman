@@ -1,4 +1,6 @@
-Contoh pemanggilan function dan outputnya langsung dari console:
+-----FUNCTION TERBILANG-----
+
+Contoh pemanggilan function terbilang() dan outputnya langsung dari console:
 
 >> terbilang(1)
 << "Satu"
