@@ -305,53 +305,68 @@ function prima(angka)
 
 function terbilang(angka)
 {
-    if (angka >= 0 )
+    if (angka >= 0 && String(angka).length <= 15)
     {
-    	let bilangan=[" ", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"];
+    	let bilangan=["", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"];
+
+		let kalimat;
 
 		if (angka < 12)
 		{
-			return bilangan[angka];
+			kalimat =  bilangan[angka];
 		}
 		else if (angka < 20)
 		{
-			return terbilang(angka - 10) + " belas";
+			kalimat =  terbilang(angka - 10) + " Belas";
 		}
 		else if (angka < 100)
 		{
-			return terbilang(Math.floor(parseInt(angka) / 10)) + " puluh " + terbilang(parseInt(angka) % 10);
+			kalimat =  terbilang(Math.floor(parseInt(angka) / 10)) + " Puluh " + terbilang(parseInt(angka) % 10);
 		}
 		else if (angka < 200)
 		{
-			return "Seratus " + terbilang(parseInt(angka) - 100);
+			kalimat =  "Seratus " + terbilang(parseInt(angka) - 100);
 		}
 		else if (angka < 1000)
 		{
-			return terbilang(Math.floor(parseInt(angka)/100)) + " ratus " + terbilang(parseInt(angka) % 100);
+			kalimat =  terbilang(Math.floor(parseInt(angka) / 100)) + " Ratus " + terbilang(parseInt(angka) % 100);
 		}
 		else if (angka < 2000)
 		{
-			return "Seribu " + terbilang(parseInt(angka) - 1000);
+			kalimat =  "Seribu " + terbilang(parseInt(angka) - 1000);
 		}
 		else if (angka < 1000000)
 		{
-			return terbilang(Math.floor(parseInt(angka) / 1000)) + " ribu " + terbilang(parseInt(angka) % 1000);
+			kalimat =  terbilang(Math.floor(parseInt(angka) / 1000)) + " Ribu " + terbilang(parseInt(angka) % 1000);
 		}
 		else if(angka < 1000000000)
 		{
-			return terbilang(Math.floor(parseInt(angka) / 1000000)) + " juta " + terbilang(parseInt(angka) % 1000000);
+			kalimat =  terbilang(Math.floor(parseInt(angka) / 1000000)) + " Juta " + terbilang(parseInt(angka) % 1000000);
 		}
 		else if(angka < 1000000000000)
 		{
-			return terbilang(Math.floor(parseInt(angka) / 1000000000)) + " milyar " + terbilang(parseInt(angka) % 1000000000);
+			kalimat =  terbilang(Math.floor(parseInt(angka) / 1000000000)) + " Milyar " + terbilang(parseInt(angka) % 1000000000);
 		}
 		else if(angka < 1000000000000000)
 		{
-			return terbilang(Math.floor(parseInt(angka) / 1000000000000)) + " triliun " + terbilang(parseInt(angka) % 1000000000000);
+			kalimat =  terbilang(Math.floor(parseInt(angka) / 1000000000000)) + " Triliun " + terbilang(parseInt(angka) % 1000000000000);
 		}
+
+		kalimat = kalimat.split(' ');
+		let kalimatFinal = [];
+
+		for (let i = 0; i < kalimat.length; ++i)
+		{
+			if (kalimat[i] !== '')
+			{
+				kalimatFinal.push(kalimat[i]);
+			}
+		}
+
+		return kalimatFinal.join(' ');
 	}
 	else
 	{
-		return `Masukkan bilangan asli (bilangan bulat positif)`;
+		return `Masukkan bilangan asli (bilangan bulat positif) dan maksimal 16 digit`;
 	}
 }
