@@ -1,0 +1,42 @@
+body {
+	background-color: silver;
+}
+
+.container {
+	border: solid black 1px;
+	margin: auto;
+	padding: 0px 0px 35px;
+	width: 300px;
+	text-align: center;
+	border-radius: 15px;
+}
+
+.content {
+	margin: auto;
+	width: 200px;
+	padding: 20px 5px;
+	background-color: gray;
+	border: solid black 4px;
+	border-radius: 15px;
+}
+
+.panel {
+	margin: 15px 0px;
+}
+
+.tampil {
+	font-weight: bold;
+	background-color: white;
+}
+
+.btn-angka {
+	margin-bottom: 15px;
+}
+
+button {
+	margin: 5px;
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-weight: bold;
+}
