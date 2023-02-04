@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Management | Djay Store</title>
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		<!-- Jquery -->
+		<script src="js/jquery.js" defer></script>
+
+		<!-- My JS -->
+		<script src="js/script.js" defer></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row mt-4">
+				<!-- Navbar -->
+				<div class="col-2 p-0">
+					<div class="d-grid gap-1">
+						<button type="button" id="btn-allProduct" class="btn btn-dark">All Product</button>
+						<button type="button" id="btn-category" class="btn btn-dark">Product Categories</button>
+						
+						<!-- Daftar kategori Produk -->
+						<div class="" id="listCategory"></div>
+					</div>
+				</div>
+
+				<!-- Table Produk -->
+				<div class="col">
+					<button type="button" id="btn-addProduct" class="btn btn-outline-dark btn-sm w-25 float-end" data-bs-toggle="modal" data-bs-target="#modalForm">Add a Product</button>
+					<table class="table">
+						<thead>
+							<tr class="border-bottom border-dark border-3">
+								<th>No.</th>
+								<th>Nama</th>
+								<th>Harga</th>
+								<th>Rating</th>
+								<th>Deskripsi</th>
+								<th></th> <!-- Detail Produk -->
+								<th></th> <!-- Update Produk -->
+								<th></th> <!-- Delete Produk -->
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- Modal Detail -->
+			<div class="modal fade" id="detailProductModal" tabindex="-1" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title fs-5" id="titleProduct"></h2>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+
+						<div class="modal-body">
+							<p id="description"></p>
+							<span id="brand" class="p-2 border border-dark rounded w-25"></span>
+							<span id="rating" class="p-2 border border-dark rounded w-25"></span>
+							<span id="price" class="p-2 border border-dark rounded w-25"></span>
+						</div>
+
+						<div class="modal-footer">
+							<div id="stock" class="p-2 border border-dark rounded-pill"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Modal Add a Product and Update a Product -->
+			<div class="modal fade" id="modalForm" tabindex="-1" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title fs-5" id="modalLabel"></h2>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+
+						<div class="modal-body">
+							<form>					
+								<input type="hidden" class="form-control" id="id">
+								<div class="mb-3">
+									<label for="title" class="form-label">Nama</label>
+									<input type="text" class="form-control" id="titleInput">
+								</div>
+
+								<div class="mb-3">
+									<label for="category" class="form-label">Kategori</label>
+									<input type="text" class="form-control" id="categoryInput">
+								</div>
+								
+								<div class="mb-3">
+									<label for="description" class="form-label">Deskripsi</label>
+									<input type="text" class="form-control" id="descriptionInput">
+								</div>
+								
+								<div class="mb-3">
+									<label for="brand" class="form-label">Brand</label>
+									<input type="text" class="form-control" id="brandInput">
+								</div>
+
+								<div class="mb-3">
+									<label for="rating" class="form-label">Rating</label>
+									<input type="text" class="form-control" id="ratingInput">
+								</div>
+
+								<div class="mb-3">
+									<label for="price" class="form-label">Harga</label>
+									<input type="text" class="form-control" id="priceInput">
+								</div>
+
+								<div class="mb-3">
+									<label for="stock" class="form-label">Stock</label>
+									<input type="text" class="form-control" id="stockInput">
+								</div>
+								
+								<button type="submit" id="simpan" class="btn btn-outline-primary float-end" data-bs-dismiss="modal">Simpan</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap JS -->
+		<script src="js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
