@@ -21,3 +21,13 @@ There are 8 resources available for you:
 ##
 
 Tugas4-JavaScript use 100 products https://dummyjson.com/products/
+
+## Features in Tugas4-JavaScript
+
+- Get all product
+- Get a single product
+- Get all product categories
+- Get product of a category
+- Add a new product (simulate)
+- Update a product (simulate)
+- Delete a product (simulate)
