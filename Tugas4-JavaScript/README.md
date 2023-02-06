@@ -36,5 +36,5 @@ Tugas4-JavaScript use 100 products https://dummyjson.com/products/
 1. Saat halaman web pertama kali dibuka, akan menampilkan tabel yang berisi daftar 30 produk.
 2. Saat menu All Product diklik, akan menampilkan semua daftar produk (100 produk).
 3. Double klik  menu Product Category untuk menampilkan kategory produk yang tersedia, dan klik kategori yang ada untuk menampilkan produk dengan kategori tersebut.
-4.Tombol detail bekerja seperti pada umumnya, tidak ada sesuatu yang khusus.
-5. Tombol Add a Product, Update, dan Delete berfungsi sebagai simulasi saja (tidak mengubah data yang ditampilkan) dan akan menampilkannya di console
+4. Tombol detail menampilkan info yang lebih detail mengenai produk.
+5. Tombol Add a Product, Update, dan Delete berfungsi sebagai simulasi saja (tidak mengubah data yang sebenarnya) dan akan menampilkannya di console
