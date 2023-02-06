@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	// Show all product
 	getAllProducts()
 
@@ -54,17 +55,16 @@ $(document).ready(function() {
 			'stock': $('#stockInput').val(),
 		};
 
-		(id) ? updateProduct(id, product) :  addproduct(product);
-		removeValue()
-	})
+		removeValue();
 
+		(id === '') ? addProduct(product) : updateProduct(id, product);	
+	})
 
 	// Set tombol Add a Product
 	$('#btn-addProduct').click(function() {
 		$('#modalLabel').text('Tambah Produk');
 		removeValue()
 	})
-	
 
 	// Set tombol Update
 	$('tbody').on('click', '#btn-update', function() {
@@ -72,7 +72,6 @@ $(document).ready(function() {
 		$('#modalLabel').text('Perbarui Produk')
 		selectProduct(id);
 	})
-
 
 	// Set tombol Delete
 	$('tbody').on('click', '#btn-delete', function() {
@@ -89,7 +88,7 @@ $(document).ready(function() {
 	function getAllProducts(limit = 30)
 	{
 		$.ajax({
-			type 		: "get",
+			method 		: "GET",
 			url		  	: `https://dummyjson.com/products?limit=${limit}`,
 			dataType	: "json",
 			
@@ -139,149 +138,163 @@ $(document).ready(function() {
 	// ----- Get a single Product ----- //
 	function getProduct(id)
 	{
-		fetch(`https://dummyjson.com/products/${id}`)
-		.then( res => res.json() )
-		.then( product => {
-			// console.log(product);
+		$.ajax({
+			method 		: "GET",
+			url		  	: `https://dummyjson.com/products/${id}`,
+			dataType	: "json",
+			success		: function(product) {
+				// console.log(product);
 
-			$('#titleProduct').text(`${product.title} | ${product.category}`);
-			$('#description').text(product.description);
-			$('#brand').text(product.brand);
-			$('#rating').text(`★${product.rating}`);
-			$('#price').text(`${product.price}$`);
-			$('#stock').text(`Stock: ${product.stock}`);	
-		} )
+				$('#titleProduct').text(`${product.title} | ${product.category}`);
+				$('#description').text(product.description);
+				$('#brand').text(product.brand);
+				$('#rating').text(`★${product.rating}`);
+				$('#price').text(`${product.price}$`);
+				$('#stock').text(`Stock: ${product.stock}`);
+			}
+		});
 	}
 
 	
 	// ----- Get products of a category   ----- //
 	function getProductOfCategory(category)
 	{
-		fetch(`https://dummyjson.com/products/category/${category}`)
-		.then( res => res.json() )
-		.then( res => {
-			// console.log(res);
-			
-			let product = res.products;
-			// console.log(product);
-
-			let no = 1;
-			let tbody = ``;
-			
-			$.each(product, function(key, value) {
-				// console.log(value);
+		$.ajax({
+			method 		: "GET",
+			url	  		: `https://dummyjson.com/products/category/${category}`,
+			dataType	: "json",
+			success		: function(response) {
+				// console.log(response);
+				// console.log(reponse.product);
 				
-				tbody += `<tr>
-							<td>${no++}</td>
-							<td>${value.title}</td>
-							<td>${value.price}$</td>
-							<td>★${value.rating}</td>
-							<td>${value.description}</td>
-							<td>
-								<button type="button" id="btn-detail" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailProductModal" data-id=${value.id}>
-									Detail
-								</button>
-							</td>
-							<td>
-								<button type="button" id="btn-update" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalForm" data-id=${value.id}>
-									Update
-								</button>
-							</td>
-							<td>
-								<button type="button" id="btn-delete" class="btn btn-outline-danger btn-sm" data-id=${value.id}>
-									Delete
-								</button>
-							</td>
-						</tr>`;
-			});
+				let product = response.products;
+				// console.log(product);
 
-			$('table > tbody').html(tbody);
+				let no = 1;
+				let tbody = ``;
+				
+				$.each(product, function(key, value) {
+					// console.log(value);
+					
+					tbody += `<tr>
+								<td>${no++}</td>
+								<td>${value.title}</td>
+								<td>${value.price}$</td>
+								<td>★${value.rating}</td>
+								<td>${value.description}</td>
+								<td>
+									<button type="button" id="btn-detail" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#detailProductModal" data-id=${value.id}>
+										Detail
+									</button>
+								</td>
+								<td>
+									<button type="button" id="btn-update" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#modalForm" data-id=${value.id}>
+										Update
+									</button>
+								</td>
+								<td>
+									<button type="button" id="btn-delete" class="btn btn-outline-danger btn-sm" data-id=${value.id}>
+										Delete
+									</button>
+								</td>
+							</tr>`;
+				});
 
-		} )
+				$('table > tbody').html(tbody);
+			}
+		});
 	}
 	
 
 	// ----- Get all products categories  ----- //
 	function getCategory()
 	{
-		fetch('https://dummyjson.com/products/categories')
-		.then( res => res.json() )
-		.then( category => {
-			// console.log(category);
+		$.ajax({
+			method 		: "GET",
+			url	  		: `https://dummyjson.com/products/categories`,
+			dataType	: "json",
+			success		: function(categories) {
+				// console.log(categories);
+				
+				let listCtgry = ``;
+					
+				categories.forEach( category => {
+					listCtgry +=  `<button type="button" id="btn-productOf" class="btn btn-light mb-1 text-capitalize" category="${category}">${category}</button>`;
+				})
 
-			let listCtgry = ``;
-			
-			category.forEach( item => {
-				listCtgry +=  `<button type="button" id="btn-productOf" class="btn btn-light mb-1 text-capitalize" category="${item}">${item}</button>`;
-			})
-
-			$('#listCategory').html(listCtgry);
-		})
+				$('#listCategory').html(listCtgry);
+			}
+		});
 	}
 
 	
 	// ----- Add Product  ----- //
-	function addproduct(data)
+	function addProduct(data)
 	{
-		fetch('https://dummyjson.com/products/add', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(data)
-		})
-		.then( res => res.json() )
-		.then( console.log )
+		$.ajax({
+			method 	: "POST",
+			url	  	: "https://dummyjson.com/products/add",
+			data 	: JSON.stringify(data),
+			headers : { 'Content-Type' : 'application/json' },
+			success	: product => console.log(product)
+		});
 	}
 	
 
 	// ----- Select Product to Update ----- //	
 	function selectProduct(id)
 	{
-		fetch(`https://dummyjson.com/products/${id}`)
-		.then( res => res.json() )
-		.then( product => {
-			$('#id').val(product.id);
-			$('#titleInput').val(product.title);
-			$('#categoryInput').val(product.category);
-			$('#descriptionInput').val(product.description);
-			$('#brandInput').val(product.brand);
-			$('#ratingInput').val(product.rating);
-			$('#priceInput').val(product.price);
-			$('#stockInput').val(product.stock);
-		} )
+		$.ajax({
+			url	  	: `https://dummyjson.com/products/${id}`,
+			data 	: JSON.stringify(id),
+			success	: function(product) {
+				// console.log(product);
+
+				$('#id').val(product.id);
+				$('#titleInput').val(product.title);
+				$('#categoryInput').val(product.category);
+				$('#descriptionInput').val(product.description);
+				$('#brandInput').val(product.brand);
+				$('#ratingInput').val(product.rating);
+				$('#priceInput').val(product.price);
+				$('#stockInput').val(product.stock);
+			}
+		});
 	}
 
 	
 	// ----- Update Product  ----- //	
 	function updateProduct(id, data)
 	{
-		fetch(`https://dummyjson.com/products/${id}`, {
-			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(data)
-		})
-		.then( res => res.json() )
-		.then( console.log )
+		$.ajax({
+			method 	: "PUT",
+			url	  	: `https://dummyjson.com/products/${id}`,
+			headers : { 'Content-Type' : 'application/json' },
+			data 	: JSON.stringify(data),
+			success	: product => console.log(product)
+		});
 	}
 
 
 	// ----- Delete Product  ----- //
 	function deleteProduct(id)
 	{
-		fetch(`https://dummyjson.com/products/${id}`, {
-			method: 'DELETE',
-		})
-		.then( res => res.json() )
-		.then( product => {
-			console.log(product);
-			console.log(`isDeleted: ${product.isDeleted}`);
-			console.log(`deletedOn: ${product.deletedOn}`);
-		})
+		$.ajax({
+			method 	: 'DELETE',
+			url	 	: `https://dummyjson.com/products/${id}`,
+			success : function(product) {
+				console.log(product);
+				console.log(`isDeleted: ${product.isDeleted}`);
+				console.log(`deletedOn: ${product.deletedOn}`);
+			}
+		});	
 	}
 
 	
 	// ----- Remove Input Value  ----- //
 	function removeValue()
 	{
+		$('#id').val('');
 		$('#titleInput').val('');
 		$('#categoryInput').val('');
 		$('#descriptionInput').val('');
