@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Management | Djay Store</title>
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		<!-- Jquery -->
+		<script src="js/jquery.js" defer></script>
+
+		<!-- My JS -->
+		<script src="js/script.js" defer></script>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Produk -->
+			<div class="row p-0 mt-2">
+				<div class="p-0">
+					<h1 class="ps-0">
+						Daftar Produk
+						<span class="float-end">
+							<button type="button" class="btn btn-sm btn-outline-dark p-0" id="btn-tblProduk" style="width: 100px" title="Buka: tekan ganda | Tutup: tekan">Buka | Tutup</button>
+						</span>
+					</h1>
+				</div>
+
+				<!-- Table DaftarProduk -->
+				<div class="p-0">
+					<table class="table table-sm table-bordered mt-2" id="tblProduk">
+						<thead class="table-dark">
+							<tr>
+								<th style="width: 25px">No.</th>
+								<th>Nama</th>
+								<th>Deskripsi</th>
+								<th>Brand</th>
+								<th>Harga</th>
+								<th>Rating</th>
+								<th>Stock</th>
+							</tr>
+						</thead>
+						<tbody id="tbody-tblProduk"></tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- Pelanggan -->
+			<div class="row border-top border-5 border-dark mt-3">
+				<div class="p-0 mb-3">
+					<h1 class="ps-0">
+						Daftar Pelanggan
+						<span class="float-end">
+							<button type="button" class="btn btn-sm btn-outline-dark p-0" id="btn-tblPelanggan" style="width: 100px" title="Buka: tekan ganda | Tutup: tekan">Buka | Tutup</button>
+						</span>
+					</h1>
+					<button type="button" class="btn btn-sm btn-outline-dark p-0 float-end" id="btn-tambah" data-bs-toggle="modal" data-bs-target="#modalFormPelanggan" style="width: 100px" title="Tambah data">Tambah</button>
+				</div>
+
+				<div class="" role="alert" id="message"><span></span></div>
+
+				<!-- Tabel Daftar Pelanggan -->
+				<div class="p-0">
+					<table class="table table-sm table-bordered" id="tblPelanggan">
+						<thead class="table-dark">
+							<tr>
+								<th style="width: 25px">No.</th>
+								<th >Nama</th>
+								<th>Alamat</th>
+								<th style="width: 200px">No. Telepon</th>
+								<th colspan="2"></th>
+							</tr>
+						</thead>
+						<tbody id="tbody-tblPelanggan"></tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- Modal Tambah & Ubah Data Pelanggan -->
+			<div class="modal fade" id="modalFormPelanggan" tabindex="-1" aria-labelledby="modalFormPelanggan" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title fs-5" id="modalLabel"></h2>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+
+						<div class="modal-body">
+							<form>
+								<input type="hidden" class="form-control" id="idpelanggan">
+								
+								<div class="mb-3">
+									<label for="inputPelanggan" class="form-label">Nama</label>
+									<input type="text" class="form-control" id="nama" required>
+								</div>
+								
+								<div class="mb-3">
+									<label for="inputAlamat" class="form-label">Alamat</label>
+									<input type="text" class="form-control" id="alamat" required>
+								</div>
+								
+								<div class="mb-3">
+									<label for="inputTelp" class="form-label">No. Telepon</label>
+									<input type="text" class="form-control" id="telepon" required>
+								</div>
+								
+								<button type="submit" id="btn-simpan" class="btn btn-sm btn-outline-primary float-end" data-bs-dismiss="modal">Simpan</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Bootstrap JS -->
+		<script src="js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
