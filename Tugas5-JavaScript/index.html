@@ -17,14 +17,16 @@
 	<body>
 		<div class="container">
 			<!-- Produk -->
-			<div class="row p-0 mt-2">
-				<div class="p-0">
+			<div class="row border-top border-5 border-dark mt-3 p-0">
+				<div class="p-0 mb-2">
 					<h1 class="ps-0">
 						Daftar Produk
 						<span class="float-end">
 							<button type="button" class="btn btn-sm btn-outline-dark p-0" id="btn-tblProduk" style="width: 100px" title="Buka: tekan ganda | Tutup: tekan">Buka | Tutup</button>
 						</span>
 					</h1>
+
+					<button type="button" class="btn btn-sm btn-outline-dark p-0 float-end" id="btn-kategori" data-bs-toggle="modal" data-bs-target="#modalSelectKategori" style="width: 100px" title="Daftar Kategori">Kategori</button>
 				</div>
 
 				<!-- Table DaftarProduk -->
@@ -39,6 +41,7 @@
 								<th>Harga</th>
 								<th>Rating</th>
 								<th>Stock</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody id="tbody-tblProduk"></tbody>
@@ -69,12 +72,42 @@
 								<th >Nama</th>
 								<th>Alamat</th>
 								<th style="width: 200px">No. Telepon</th>
-								<th colspan="2"></th>
+								<th colspan="3"></th>
 							</tr>
 						</thead>
 						<tbody id="tbody-tblPelanggan"></tbody>
 					</table>
 				</div>
+			</div>
+
+			<!-- Pesanan -->
+			<div class="row border-top border-5 border-dark mt-3">
+				<h1 class="ps-0">Pesanan</h1>
+				<table class="table table-sm table-bordered" id="tblPesanan">
+					<thead class="table-dark">
+						<tr>
+							<th>Pemesan</th>
+							<th>Produk</th>
+							<th>Harga</th>
+							<th>Jumlah</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="tbody-tblPesanan">
+						<tr class="align-middle">
+							<td id="pemesan">-</td>
+							<td id="produk">-</td>
+							<td id="harga">-</td>
+							<td style="width: 110px"><input type="number" style="width: 100px" id="jmlPesanan"></td>
+							<td class="text-center" style="width: 25px">
+								<button id="checkout" type="button" class="btn btn-sm btn-light" title="Checkout">
+									<img src="assets/icon/shopping_cart_checkout.svg" alt="shopping_cart_checkout.svg">
+								</button>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
 			</div>
 
 			<!-- Modal Tambah & Ubah Data Pelanggan -->
@@ -107,6 +140,26 @@
 								
 								<button type="submit" id="btn-simpan" class="btn btn-sm btn-outline-primary float-end" data-bs-dismiss="modal">Simpan</button>
 							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Modal Pencarian Product sesuai Kategori -->
+			<div class="modal fade" id="modalSelectKategori" tabindex="-1" aria-labelledby="modalSelectKategori" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="modalLabel">Pilih Kategori Produk</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+
+						<div class="modal-body">
+							<select class="form-select" id="selectKategori"></select>
+						</div>
+
+						<div class="modal-footer">
+							<button type="submit" id="btn-cari" class="btn btn-sm btn-outline-primary float-end" data-bs-dismiss="modal">Cari</button>
 						</div>
 					</div>
 				</div>
