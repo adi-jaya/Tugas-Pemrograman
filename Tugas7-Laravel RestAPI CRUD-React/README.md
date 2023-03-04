@@ -1,4 +1,4 @@
-# CRUD | LARAVEL API ADN REACT
+# CRUD | LARAVEL API & REACT
 Laravel Rest API CRUD with React
 
-Video: https://youtu.be/NSORI2CfMLE
+Video: https://youtu.be/NS0RI2CfMLE
